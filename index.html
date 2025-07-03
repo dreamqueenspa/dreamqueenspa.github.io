@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <style>
         :root {
-            --primary: #d4afb9;
-            --secondary: #9cadce;
+            --primary: #FFB347; /* Light orange */
+            --secondary: #FFA07A; /* Lighter orange */
             --light: #f8f9fa;
             --dark: #212529;
-            --accent: #7ec4cf;
+            --accent: #FFD700; /* Gold accent */
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
@@ -24,22 +24,16 @@
             background-color: #fff;
         }
         
-        /* Logo Placeholder */
-        .logo-placeholder {
-            height: 80px;
-            width: 200px;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            border: 1px dashed #ccc;
-            color: #999;
+        /* Logo */
+        .navbar-brand img {
+            height: auto;
+            max-width: 200px;
+            transition: all 0.3s ease;
         }
         
         /* Navigation */
         .navbar {
-            background-color: white;
+            background-color: var(--primary); /* Light orange */
             box-shadow: var(--shadow);
             padding: 15px 0;
             transition: all 0.3s ease;
@@ -47,17 +41,12 @@
         
         .navbar.scrolled {
             padding: 10px 0;
+            background-color: #FFA500 !important; /* Slightly darker orange when scrolled */
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .navbar-brand {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.8rem;
-        }
-        
         .nav-link {
-            color: var(--dark);
+            color: white !important;
             font-weight: 500;
             margin: 0 10px;
             position: relative;
@@ -68,7 +57,7 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: white;
             bottom: 0;
             left: 0;
             transition: width 0.3s ease;
@@ -77,6 +66,15 @@
         .nav-link:hover::after,
         .nav-link.active::after {
             width: 100%;
+        }
+        
+        /* Mobile menu button */
+        .navbar-toggler {
+            border-color: white !important;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         }
         
         /* Hero Section */
@@ -118,8 +116,8 @@
         }
         
         .btn-primary:hover {
-            background-color: #c39da7;
-            border-color: #c39da7;
+            background-color: #FFA500;
+            border-color: #FFA500;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
@@ -312,13 +310,13 @@
         }
         
         .submit-btn:hover {
-            background: #c39da7;
+            background: #FFA500;
             transform: translateY(-2px);
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background-color: var(--primary); /* Light orange */
             color: white;
             padding: 30px 0;
             text-align: center;
@@ -332,7 +330,7 @@
         }
         
         .social-icons a:hover {
-            color: var(--primary);
+            color: var(--dark);
             transform: translateY(-3px);
         }
         
@@ -382,9 +380,8 @@
                 height: 300px;
             }
             
-            .logo-placeholder {
-                width: 150px;
-                height: 60px;
+            .navbar-brand img {
+                max-width: 150px;
             }
         }
     </style>
@@ -398,9 +395,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
-<a class="navbar-brand" href="#">
-    <img src="logo1.png" alt="Dream Queen Spa Logo" class="img-fluid" style="max-height: 80px;">
-</a>
+            <a class="navbar-brand" href="#">
+                <img src="logo1.png" alt="Dream Queen Spa Logo" class="img-fluid">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -434,8 +431,6 @@
             <a href="#contact" class="btn btn-primary">Book Now</a>
         </div>
     </section>
-
-  
 
     <!-- Services Section -->
     <section class="services" id="services">
@@ -563,24 +558,28 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="contact-form">
-                        <form id="contactForm" onsubmit="sendEmail(); return false;">
+                        <form action="https://formsubmit.co/ibrahimans719@gmail.com" method="POST">
+                            <input type="hidden" name="_subject" value="New Booking Inquiry from Dream Queen Spa">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_next" value="https://yourgithubusername.github.io/thank-you.html">
+                            
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                                 </div>
                             </div>
-                            <input type="tel" class="form-control" placeholder="Your Phone" required>
-                            <select class="form-control" required>
+                            <input type="tel" name="phone" class="form-control" placeholder="Your Phone" required>
+                            <select class="form-control" name="service" required>
                                 <option value="">Select Service</option>
                                 <option>Couples Massage</option>
                                 <option>Therapeutic Massage</option>
                                 <option>Spa Packages</option>
                                 <option>Female Body Massage</option>
                             </select>
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
                             <button type="submit" class="submit-btn">Send Message</button>
                         </form>
                     </div>
@@ -592,7 +591,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-           <img src="logo1.png" alt="Dream Queen Spa Logo" class="img-fluid" style="max-height: 80px;">
+            <img src="logo1.png" alt="Dream Queen Spa Logo" class="img-fluid" style="max-height: 80px;">
             <div class="social-icons mb-4">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -629,23 +628,6 @@
                 }
             });
         });
-        
-        // Form submission function
-        function sendEmail() {
-            const name = document.querySelector('input[type="text"]').value;
-            const email = document.querySelector('input[type="email"]').value;
-            const phone = document.querySelector('input[type="tel"]').value;
-            const service = document.querySelector('select').value;
-            const message = document.querySelector('textarea').value;
-            
-            const subject = `New Booking Inquiry from ${name}`;
-            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0AService: ${service}%0D%0AMessage: ${message}`;
-            
-            window.location.href = `mailto:ibrahimans719@gmail.com?subject=${subject}&body=${body}`;
-            
-            alert("Thank you for your message! We'll get back to you soon.");
-            document.getElementById("contactForm").reset();
-        }
         
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
